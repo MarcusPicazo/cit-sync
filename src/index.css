@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================
+   REGLA ANTI-DOBLE SCROLLBAR
+   ========================================= */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #020617; /* Slate-950 por defecto */
+}
+
+/* =========================================
+   CUSTOM SCROLLBAR (DISEÑO NEÓN/LIMPIO)
+   ========================================= */
+.custom-scrollbar::-webkit-scrollbar { width: 12px; height: 12px; }
+.custom-scrollbar::-webkit-scrollbar-track { 
+  background: rgba(15, 23, 42, 0.05); 
+  border-radius: 100px; 
+  margin: 16px; 
+  border: 3px solid transparent; 
+  background-clip: padding-box; 
+}
+.custom-scrollbar::-webkit-scrollbar-thumb { 
+  background: rgba(59, 130, 246, 0.4); 
+  border-radius: 100px; 
+  border: 3px solid transparent; 
+  background-clip: padding-box; 
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { 
+  background: rgba(59, 130, 246, 0.7); 
+}
+
+/* =========================================
+   CUSTOM CURSOR (OCULTAR NATIVO)
+   ========================================= */
+* { cursor: none; }
+.native-cursor-container, .native-cursor-container *, iframe { cursor: auto !important; }
+
+/* =========================================
+   ANIMACIONES GLOBALES
+   ========================================= */
+@keyframes solid-pulse {
+  0%, 100% { filter: brightness(1); box-shadow: 0 0 0 rgba(59,130,246,0); }
+  50% { filter: brightness(1.3); box-shadow: 0 0 20px rgba(59,130,246,0.6); }
+}
+.animate-solid-pulse { animation: solid-pulse 2s ease-in-out infinite; }
+
+@keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+.animate-fade-in { animation: fade-in 0.4s ease-out; }
+
+@keyframes slide-up-fade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+.animate-slide-up { animation: slide-up-fade 0.6s forwards; opacity: 0; }
+
+/* =========================================
+   ANIMACIÓN DE ERROR (SACUDIDA)
+   ========================================= */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+.animate-shake { 
+  animation: shake 0.4s ease-in-out; 
+}
+
+
+/* =========================================
+   ☀️ LIGHT MODE ESTRICTO (MODO CLARO TOTAL) ☀️
+   ========================================= */
+
+.light-mode { background-color: #f8fafc !important; color: #0f172a !important; }
+
+/* 1. FONDOS PRINCIPALES (Blanco puro) */
+.light-mode .bg-slate-900,
+.light-mode .bg-slate-950,
+.light-mode [class*="bg-slate-900"],
+.light-mode [class*="bg-slate-950"],
+.light-mode .bg-\[\#0a0f1c\],
+.light-mode .bg-\[\#050810\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important;
+}
+
+/* 2. FONDOS SECUNDARIOS Y BOTONES (Gris claro) */
+.light-mode .bg-slate-800,
+.light-mode [class*="bg-slate-800"],
+.light-mode .bg-slate-700,
+.light-mode [class*="bg-slate-700"],
+.light-mode .bg-\[\#070b14\],
+.light-mode .bg-\[\#0d1324\] {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: none !important;
+}
+
+/* 3. MODALES OSCUROS (Para superposiciones transparentes) */
+.light-mode .bg-black,
+.light-mode [class*="bg-black"],
+.light-mode [class*="bg-slate-950/80"],
+.light-mode [class*="bg-slate-950/90"],
+.light-mode .bg-\[\#0a0f1c\]\/90 {
+  background-color: rgba(15, 23, 42, 0.5) !important;
+}
+
+/* 4. HOVERS DE ELEMENTOS CLAROS */
+.light-mode [class*="hover:bg-slate-800"]:hover,
+.light-mode [class*="hover:bg-slate-700"]:hover,
+.light-mode [class*="hover:bg-slate-900"]:hover {
+  background-color: #e2e8f0 !important;
+}
+
+/* RESTAURAR HOVERS DE BOTONES DE ACCIÓN (Para que funcionen al pasar el mouse) */
+.light-mode .hover\:bg-blue-600:hover, .light-mode .hover\:bg-blue-600:hover * { background-color: #2563eb !important; color: #ffffff !important; }
+.light-mode .hover\:bg-blue-500:hover, .light-mode .hover\:bg-blue-500:hover * { background-color: #3b82f6 !important; color: #ffffff !important; }
+.light-mode .hover\:bg-emerald-600:hover, .light-mode .hover\:bg-emerald-600:hover * { background-color: #059669 !important; color: #ffffff !important; }
+.light-mode .hover\:bg-emerald-500:hover, .light-mode .hover\:bg-emerald-500:hover * { background-color: #10b981 !important; color: #ffffff !important; }
+.light-mode .hover\:bg-indigo-600:hover, .light-mode .hover\:bg-indigo-600:hover * { background-color: #4f46e5 !important; color: #ffffff !important; }
+.light-mode .hover\:bg-indigo-500:hover, .light-mode .hover\:bg-indigo-500:hover * { background-color: #6366f1 !important; color: #ffffff !important; }
+.light-mode .hover\:bg-red-500:hover, .light-mode .hover\:bg-red-500:hover * { background-color: #ef4444 !important; color: #ffffff !important; }
+
+/* 5. BORDES GLOBALES */
+.light-mode [class*="border-slate-800"],
+.light-mode [class*="border-slate-700"],
+.light-mode [class*="border-slate-600"] {
+  border-color: #cbd5e1 !important;
+}
+
+/* 6. TEXTOS Y TIPOGRAFÍAS */
+.light-mode .text-white,
+.light-mode [class*="text-slate-200"],
+.light-mode [class*="text-slate-300"] {
+  color: #0f172a !important; /* Negro azulado para buena lectura */
+}
+
+.light-mode [class*="text-slate-400"],
+.light-mode [class*="text-slate-500"],
+.light-mode [class*="text-slate-600"] {
+  color: #475569 !important; /* Gris oscuro para subtítulos */
+}
+
+/* CORRECCIÓN: Sidebar activo y textos azules/cyan */
+.light-mode [class*="text-blue-400"],
+.light-mode [class*="text-blue-500"] {
+  color: #2563eb !important; /* Azul más fuerte */
+  text-shadow: none !important;
+}
+.light-mode [class*="text-cyan-300"],
+.light-mode [class*="text-cyan-400"] {
+  color: #0891b2 !important; /* Cyan oscuro */
+}
+.light-mode [class*="text-amber-500"] {
+  color: #d97706 !important; 
+}
+
+/* 7. EXCEPCIONES: BOTONES SÓLIDOS DEBEN MANTENER TEXTO BLANCO */
+.light-mode .bg-blue-600, .light-mode .bg-blue-600 *,
+.light-mode .bg-indigo-600, .light-mode .bg-indigo-600 *,
+.light-mode .bg-emerald-600, .light-mode .bg-emerald-600 *,
+.light-mode .bg-emerald-500, .light-mode .bg-emerald-500 *,
+.light-mode .bg-red-600, .light-mode .bg-red-600 *,
+.light-mode .bg-red-500, .light-mode .bg-red-500 *,
+.light-mode .bg-amber-600, .light-mode .bg-amber-600 * {
+  color: #ffffff !important;
+}
+
+/* 8. INPUTS Y SELECTS */
+.light-mode input, .light-mode select, .light-mode textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light-mode input:focus, .light-mode select:focus, .light-mode textarea:focus {
+  border-color: #3b82f6 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15) !important;
+}
+
+.light-mode input[type="date"], .light-mode input[type="time"] { color-scheme: light !important; }
+
+/* 9. ELIMINAR BRILLOS DE NEÓN EN MODO CLARO */
+.light-mode [class*="shadow-\["] {
+  box-shadow: none !important; /* Apaga las luces neón específicas */
+}
+
+/* 10. Scrollbar en Modo Claro */
+.light-mode .custom-scrollbar::-webkit-scrollbar-track { background: rgba(226, 232, 240, 0.5); }
+.light-mode .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.6); }
+.light-mode .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(59, 130, 246, 0.8); }
